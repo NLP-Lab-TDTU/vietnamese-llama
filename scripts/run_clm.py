@@ -6,6 +6,9 @@ https://huggingface.co/models?filter=text-generation
 """
 # You can also adapt this script on your own causal language modeling task. Pointers for this are left as comments.
 
+from .monkey_patch_packing import monkey_patch_packing_llama
+monkey_patch_packing_llama()
+
 import logging
 import os
 import sys
@@ -28,6 +31,7 @@ from transformers import (
     Trainer,
     TrainingArguments,
     default_data_collator,
+    DataCollatorForLanguageModeling,
     is_torch_tpu_available,
     set_seed,
 )
@@ -355,7 +359,7 @@ def main():
         train_dataset=train_dataset if training_args.do_train else None,
         tokenizer=tokenizer,
         # Data collator will default to DataCollatorWithPadding, so we change it.
-        data_collator=default_data_collator,
+        data_collator=DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False, pad_to_multiple_of=8),
     )
 
     trainer.add_callback(SaveCheckpointCallback(model, tokenizer))
