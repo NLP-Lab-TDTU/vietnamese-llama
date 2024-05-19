@@ -90,5 +90,5 @@ python scripts/combine_and_tokenize_dataset.py
 
 Run script below to training.
 ```bash
-bash scripts/run_mistral_7b_8k.sh
+bash scripts/run_llama_8b_8k.sh
 ```
