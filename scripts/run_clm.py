@@ -11,6 +11,7 @@ import os
 import sys
 from dataclasses import dataclass, field
 from typing import Optional
+import math
 
 import datasets
 import torch
@@ -209,7 +210,7 @@ class SaveCheckpointCallback(TrainerCallback):
 
     def on_epoch_end(self, args, state, control, **kwargs):
         if state.is_local_process_zero:
-            checkpoint_name = f"checkpoint-epoch-{state.epoch}"
+            checkpoint_name = f"checkpoint-epoch-{math.ceil(state.epoch)}"
             checkpoint_path = os.path.join(args.output_dir, checkpoint_name)
             self.model.save_pretrained(checkpoint_path)
             self.tokenizer.save_pretrained(checkpoint_path)
