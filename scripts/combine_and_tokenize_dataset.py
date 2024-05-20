@@ -101,7 +101,7 @@ raw_dataset = raw_dataset.shuffle(seed=args.seed)
 block_size = args.block_size
 
 def tokenize_function_and_group_texts(examples):
-    texts = [text+'<|eot_id|>' for text in examples["text"]]
+    texts = [text+'<|end_of_text|>' for text in examples["text"]]
     examples = tokenizer(texts)
 
     examples['attention_mask'] = [[idx + 1] * len(value) for idx, value in enumerate(examples['attention_mask'])]
