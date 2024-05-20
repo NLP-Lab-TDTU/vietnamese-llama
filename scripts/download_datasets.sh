@@ -37,6 +37,9 @@ do
 done
 
 en_datasets=(
+    "vietgpt/legal_document_vi"
+    "vietgpt/wikipedia_vi"
+    "vietgpt/wikipedia_en"
     "vietgpt/openwebtext_en"
     "vietgpt/the_pile_openwebtext2"
 )
