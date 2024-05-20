@@ -6,7 +6,7 @@ https://huggingface.co/models?filter=text-generation
 """
 # You can also adapt this script on your own causal language modeling task. Pointers for this are left as comments.
 
-from .monkey_patch_packing import monkey_patch_packing_llama
+from monkey_patch_packing import monkey_patch_packing_llama
 monkey_patch_packing_llama()
 
 import logging
