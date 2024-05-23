@@ -118,7 +118,7 @@ def tokenize_function_and_group_texts(examples):
 lm_datasets = raw_dataset.map(
     tokenize_function_and_group_texts,
     batched=True,
-    batch_size=1000,
+    batch_size=64,
     num_proc=args.num_proc,
     remove_columns=["text"],
     load_from_cache_file=not args.overwrite_cache,
